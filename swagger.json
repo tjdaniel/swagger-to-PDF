@@ -1,0 +1,653 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "v1",
+		"title": "Reporting.REST API"
+	},
+	"host": "localhost:9000",
+	"schemes": ["http"],
+	"paths": {
+		"/api/v1/reports/design/{reportId}/credentialsets": {
+			"get": {
+				"tags": ["DesignReports"],
+				"summary": "Gets the applicable Credential Sets for the given report id",
+				"operationId": "DesignReports_CredentialSets",
+				"consumes": [],
+				"produces": ["application/json",
+				"text/json"],
+				"parameters": [{
+					"name": "reportId",
+					"in": "path",
+					"description": "The report identifier.",
+					"required": true,
+					"type": "integer",
+					"format": "int32"
+				},
+				{
+					"name": "pageNumber",
+					"in": "query",
+					"description": "The page number.",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				},
+				{
+					"name": "pageSize",
+					"in": "query",
+					"description": "Size of the page.",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/IPagedList[CredentialSet]"
+						}
+					}
+				},
+				"deprecated": false,
+				"security": [{
+					"oauth2": []
+				}]
+			}
+		},
+		"/api/v1/languages": {
+			"get": {
+				"tags": ["Languages"],
+				"operationId": "Languages_Languages",
+				"consumes": [],
+				"produces": ["application/json",
+				"text/json"],
+				"parameters": [{
+					"name": "pageNumber",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				},
+				{
+					"name": "pageSize",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					}
+				},
+				"deprecated": false,
+				"security": [{
+					"oauth2": []
+				}]
+			}
+		},
+		"/api/v1/reports/released/public": {
+			"get": {
+				"tags": ["ReleasedReports"],
+				"operationId": "ReleasedReports_Public",
+				"consumes": [],
+				"produces": ["application/json",
+				"text/json"],
+				"parameters": [{
+					"name": "pageNumber",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				},
+				{
+					"name": "pageSize",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					}
+				},
+				"deprecated": false,
+				"security": [{
+					"oauth2": []
+				}]
+			}
+		},
+		"/api/v1/reports/released/system": {
+			"get": {
+				"tags": ["ReleasedReports"],
+				"operationId": "ReleasedReports_System",
+				"consumes": [],
+				"produces": ["application/json",
+				"text/json"],
+				"parameters": [{
+					"name": "pageNumber",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				},
+				{
+					"name": "pageSize",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					}
+				},
+				"deprecated": false,
+				"security": [{
+					"oauth2": []
+				}]
+			}
+		},
+		"/api/v1/reports/released/private": {
+			"get": {
+				"tags": ["ReleasedReports"],
+				"operationId": "ReleasedReports_Private",
+				"consumes": [],
+				"produces": ["application/json",
+				"text/json"],
+				"parameters": [{
+					"name": "pageNumber",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				},
+				{
+					"name": "pageSize",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					}
+				},
+				"deprecated": false,
+				"security": [{
+					"oauth2": []
+				}]
+			}
+		},
+		"/api/v1/reports/released/{areaType}/{reportId}/outputFormats": {
+			"get": {
+				"tags": ["ReleasedReports"],
+				"operationId": "ReleasedReports_ReportOutputFormats",
+				"consumes": [],
+				"produces": ["application/json",
+				"text/json"],
+				"parameters": [{
+					"name": "areaType",
+					"in": "path",
+					"required": true,
+					"type": "string",
+					"enum": ["System",
+					"Private",
+					"Public"]
+				},
+				{
+					"name": "reportId",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int64"
+				},
+				{
+					"name": "pageNumber",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				},
+				{
+					"name": "pageSize",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					}
+				},
+				"deprecated": false,
+				"security": [{
+					"oauth2": []
+				}]
+			}
+		},
+		"/api/v1/reports/released/{areaType}/{reportId}/stylesheets": {
+			"get": {
+				"tags": ["ReleasedReports"],
+				"operationId": "ReleasedReports_Stylesheets",
+				"consumes": [],
+				"produces": ["application/json",
+				"text/json"],
+				"parameters": [{
+					"name": "areaType",
+					"in": "path",
+					"required": true,
+					"type": "string",
+					"enum": ["System",
+					"Private",
+					"Public"]
+				},
+				{
+					"name": "reportId",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int64"
+				},
+				{
+					"name": "pageNumber",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				},
+				{
+					"name": "pageSize",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					}
+				},
+				"deprecated": false,
+				"security": [{
+					"oauth2": []
+				}]
+			}
+		},
+		"/api/v1/reports/released/{areaType}/{reportId}/credentialsets": {
+			"get": {
+				"tags": ["ReleasedReports"],
+				"operationId": "ReleasedReports_CredentialSets",
+				"consumes": [],
+				"produces": ["application/json",
+				"text/json"],
+				"parameters": [{
+					"name": "areaType",
+					"in": "path",
+					"required": true,
+					"type": "string",
+					"enum": ["System",
+					"Private",
+					"Public"]
+				},
+				{
+					"name": "reportId",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int32"
+				},
+				{
+					"name": "pageNumber",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				},
+				{
+					"name": "pageSize",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					}
+				},
+				"deprecated": false,
+				"security": [{
+					"oauth2": []
+				}]
+			}
+		},
+		"/api/v1/reports/released/{areaType}/{reportId}/parameters": {
+			"get": {
+				"tags": ["ReleasedReports"],
+				"operationId": "ReleasedReports_GetTemplateParameters",
+				"consumes": [],
+				"produces": ["application/json",
+				"text/json"],
+				"parameters": [{
+					"name": "areaType",
+					"in": "path",
+					"required": true,
+					"type": "string",
+					"enum": ["System",
+					"Private",
+					"Public"]
+				},
+				{
+					"name": "reportId",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int64"
+				},
+				{
+					"name": "pageNumber",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				},
+				{
+					"name": "pageSize",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					}
+				},
+				"deprecated": false,
+				"security": [{
+					"oauth2": []
+				}]
+			}
+		},
+		"/api/v1/reports/released/privateareas": {
+			"get": {
+				"tags": ["ReleasedReports"],
+				"operationId": "ReleasedReports_GetPrivateAreas",
+				"consumes": [],
+				"produces": ["application/json",
+				"text/json"],
+				"parameters": [{
+					"name": "pageNumber",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				},
+				{
+					"name": "pageSize",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					}
+				},
+				"deprecated": false,
+				"security": [{
+					"oauth2": []
+				}]
+			}
+		},
+		"/api/v1/reports/released/privateareas/{userName}": {
+			"get": {
+				"tags": ["ReleasedReports"],
+				"operationId": "ReleasedReports_GetPrivateAreasOfUser",
+				"consumes": [],
+				"produces": ["application/json",
+				"text/json"],
+				"parameters": [{
+					"name": "userName",
+					"in": "path",
+					"required": true,
+					"type": "string"
+				},
+				{
+					"name": "pageNumber",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				},
+				{
+					"name": "pageSize",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					}
+				},
+				"deprecated": false,
+				"security": [{
+					"oauth2": []
+				}]
+			}
+		},
+		"/api/v1/reports/released/private/{userName}": {
+			"get": {
+				"tags": ["ReleasedReports"],
+				"operationId": "ReleasedReports_PrivateOfUser",
+				"consumes": [],
+				"produces": ["application/json",
+				"text/json"],
+				"parameters": [{
+					"name": "userName",
+					"in": "path",
+					"required": true,
+					"type": "string"
+				},
+				{
+					"name": "pageNumber",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				},
+				{
+					"name": "pageSize",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					}
+				},
+				"deprecated": false,
+				"security": [{
+					"oauth2": []
+				}]
+			}
+		},
+		"/api/testing": {
+			"get": {
+				"tags": ["Test"],
+				"operationId": "Test_Get",
+				"consumes": [],
+				"produces": ["application/json",
+				"text/json"],
+				"parameters": [{
+					"name": "key",
+					"in": "query",
+					"required": true,
+					"type": "string",
+					"format": "uuid"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					}
+				},
+				"deprecated": false,
+				"security": [{
+					"oauth2": []
+				}]
+			}
+		},
+		"/api/values": {
+			"get": {
+				"tags": ["Values"],
+				"operationId": "Values_Get",
+				"consumes": [],
+				"produces": ["application/json",
+				"text/json"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					}
+				},
+				"deprecated": false
+			}
+		}
+	},
+	"definitions": {
+		"IPagedList[CredentialSet]": {
+			"description": "The paged list result",
+			"required": ["pageNumber",
+			"pageSize",
+			"totalItemCount",
+			"totalPages",
+			"hasPreviousPage",
+			"hasNextPage",
+			"items"],
+			"type": "object",
+			"properties": {
+				"pageNumber": {
+					"format": "int32",
+					"description": "Gets the page number",
+					"type": "integer",
+					"readOnly": true
+				},
+				"pageSize": {
+					"format": "int32",
+					"description": "Gets the size of the page",
+					"type": "integer",
+					"readOnly": true
+				},
+				"totalItemCount": {
+					"format": "int32",
+					"description": "Gets the total item count",
+					"type": "integer",
+					"readOnly": true
+				},
+				"totalPages": {
+					"format": "int32",
+					"description": "Gets the total page count",
+					"type": "integer",
+					"readOnly": true
+				},
+				"hasPreviousPage": {
+					"description": "Gets a value indicating whether this instance has previous page",
+					"type": "boolean",
+					"readOnly": true
+				},
+				"hasNextPage": {
+					"description": "Gets a value indicating whether this instance has next page",
+					"type": "boolean",
+					"readOnly": true
+				},
+				"items": {
+					"description": "Gets the items",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/CredentialSet"
+					},
+					"readOnly": true
+				}
+			}
+		},
+		"CredentialSet": {
+			"description": "The Credential Set",
+			"required": ["code",
+			"name"],
+			"type": "object",
+			"properties": {
+				"code": {
+					"description": "Gets or sets the code of the Credential Set",
+					"type": "string"
+				},
+				"name": {
+					"description": "Gets or sets the name of the Credential Set",
+					"type": "string"
+				},
+				"id": {
+					"format": "int64",
+					"description": "Gets or sets the identifier. The property value is missing/null in Private Credential Sets",
+					"type": "integer"
+				}
+			}
+		}
+	},
+	"securityDefinitions": {
+		"oauth2": {
+			"type": "oauth2",
+			"description": "client credentials grant flow",
+			"flow": "application",
+			"tokenUrl": "http://localhost:9000/oauth/token",
+			"scopes": {
+				"Reporting.REST API": "Try out Reporting.REST API"
+			}
+		}
+	}
+}

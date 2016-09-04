@@ -32,3 +32,6 @@ node_modules
 
 .idea
 uploads
+
+# Visual Studo Code options directory
+.vscode/

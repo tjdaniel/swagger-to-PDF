@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "phantomjs-pdf": "^0.1.2"
+    "html-pdf": "^2.1.0"
   }
 }

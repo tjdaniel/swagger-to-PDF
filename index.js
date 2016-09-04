@@ -3,7 +3,7 @@
 
 var
     fs = require('fs'),
-    pdf = require('phantomjs-pdf');
+    pdf = require('html-pdf');
 
    
 // consts
@@ -50,9 +50,6 @@ else
     writeOutFiles(html,fileName);
 }
 
-
-    
-
 var sub1Counter=1; //counters for sub heading items
 var sub2Counter=1;
 var sub3Counter=1;
@@ -68,6 +65,7 @@ function writeOutFiles(htmlInput,fileName)
     // remove output file if exists
     if(fs.existsSync(fileName))
         fs.unlinkSync(fileName);
+
     // write output HTML file, then convert to PDF
     fs.writeFile(fileName, htmlInput, function(err){
         if(err)
@@ -75,36 +73,23 @@ function writeOutFiles(htmlInput,fileName)
         else{
             console.log("done");
             //normalize.css helps with empty pages on the end of the pdf and renders the html more consistently # http://necolas.github.io/normalize.css/
-            pdf.convert({"html" : "./test.html", "css": "./normalize.css"}, function(result) {
-                if(result._err)    
+            // var options = {
+            //     "html" : "./test.html", 
+            //     "css": "./normalize.css"
+            // };
+            var options = {format : 'A4'};
+
+            var html = fs.readFileSync('./test.html', 'utf8');
+
+            pdf.create(html, options).toFile('./test.pdf', function(err, result)
+             {
+                if(err)    
                     console.log("err:" + result._err);
 				else{
-
-					/* Using a buffer and callback */
-					result.toBuffer(function(returnedBuffer) {
-					    console.log("return buffer");
-					});
-
-					/* Using a readable stream */
-					var stream = result.toStream();
-
-					/* Using the temp file path */
-					var tmpPath = result.getTmpPath();
-
-					/* Using the file writer and callback */
-					result.toFile("./output.pdf", function(err) {
-						if(err)    
-							console.log("err:" + err);
-						else
-							console.log("really done ...");
-
-					});
+					console.log("really done ..." + result);
 				};
-                
             });
-
         }
-
     });
 }
 
@@ -616,10 +601,8 @@ function swaggerContentCheck(swaggerJSON, section, checkOwn)
                 }
                 return 1;
             }
-            break;
         case 'paths':
                 return (swaggerContentCheck(swaggerJSON, 'security', true) +1);
-                break;
     }
 }
 function tableOfContents(swaggerJSON)
